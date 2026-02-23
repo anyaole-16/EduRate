@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduRate - Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#1e3b8a",
+                "background-light": "#f6f6f8",
+                "background-dark": "#121620",
+            },
+            fontFamily: {
+                "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {
+                "DEFAULT": "0.5rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+            },
+        },
+    },
+}
+</script>
+<style>
+body { font-family: 'Inter', sans-serif; }
+.sidebar-active { background-color: rgba(255,255,255,0.15); border-left: 4px solid white; }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex">
+<!-- Sidebar -->
+<aside id="sidebar" class="fixed inset-y-0 left-0 w-72 bg-primary text-white flex flex-col z-50 transition-all duration-300">
+<div class="p-8 flex items-center gap-3">
+<div class="bg-white/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-white text-3xl">school</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight">EduRate</h1>
+<p class="text-xs text-blue-200 uppercase tracking-widest font-semibold">University Portal</p>
+</div>
+</div>
+<nav class="mt-8 flex-1 px-4 space-y-2">
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg sidebar-active transition-all" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-medium">Dashboard</span></a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/10 transition-all text-blue-100" href="#"><span class="material-symbols-outlined">book_5</span><span class="font-medium">My Courses</span></a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/10 transition-all text-blue-100" href="#"><span class="material-symbols-outlined">history_edu</span><span class="font-medium">Evaluation History</span></a>
+<div class="pt-8 pb-2 px-4"><p class="text-xs font-bold text-blue-300 uppercase tracking-wider">Settings</p></div>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/10 transition-all text-blue-100" href="/change-password"><span class="material-symbols-outlined">lock</span><span class="font-medium">Change Password</span></a>
+<a href="/logout" class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-white/10 transition-all text-blue-100"><span class="material-symbols-outlined">logout</span><span class="font-medium">Sign Out</span></a>
+</nav>
+<div class="p-6">
+<div class="bg-white/10 rounded-xl p-4">
+<p class="text-xs text-blue-200 mb-2 font-medium">Semester Progress</p>
+<p class="text-[10px] text-blue-100">Progress info unavailable</p>
+</div>
+</div>
+</aside>
+
+<!-- Main Content -->
+<main id="main" class="flex-1 ml-72 flex flex-col transition-all duration-300">
+<!-- Top Navigation -->
+<header class="h-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 md:px-10 sticky top-0 z-40">
+<div class="flex items-center gap-2">
+<!-- Toggle Button -->
+<button id="toggleSidebar" class="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="text-slate-400 font-medium">Portal</span>
+<span class="material-symbols-outlined text-slate-300 text-sm">chevron_right</span>
+<span class="text-slate-900 dark:text-white font-semibold text-lg">Student Dashboard</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex flex-col items-end">
+<span class="text-sm font-semibold text-slate-900 dark:text-white leading-none"><%= user.email %></span>
+<span class="text-xs text-slate-500 mt-1">ID: <%= user.id %></span>
+</div>
+<div class="flex items-center gap-3">
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-tight border border-primary/20">Student</span>
+<div class="h-10 w-10 rounded-full bg-slate-200 border-2 border-white overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Student profile portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwcsu_t5jUVuZy8jv4b0Cc34jedPp4VKTL7qMXQCBAizu0e6gO16ZY9JGW3EE_C901BsE_XlkjEQFcvagDMwtUa0zaWBAz6lgQ9k5On-o9PEDiEOdmVKYW29GhKXg9KIBRzK3PHqRSNGOO3442XbxELN-aWNy_Aa4ITBNF83MVo5djc6tPjZY3CUNgsVjILjiBUVv9Mg8Z4UFe_iX50NqNCYnGE2md9fV2e85xgdATAIJtCE44we8Z9ixB_PP1F6vnJJ_XbLOQVVtU"/>
+</div>
+<button class="p-1 text-slate-400 hover:text-slate-600">
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</header>
+
+<!-- Page Content -->
+<div class="p-6 md:p-10 space-y-10">
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+    Welcome back, <%= user.name %>!
+</h2>
+<p class="text-slate-500 mt-1">
+    You have <%= courses.filter(c => !c.evaluated).length %> pending course evaluations for the Fall 2024 semester.
+</p>
+</div>
+</section>
+<!-- Courses Sections Here -->
+</div>
+
+<!-- Footer -->
+<footer class="mt-auto p-10 border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-sm text-slate-500">© 2024 EduRate University Management System. All rights reserved.</p>
+<div class="flex items-center gap-6">
+<a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Help Center</a>
+<a class="text-sm text-slate-500 hover:text-primary transition-colors" href="#">Feedback</a>
+</div>
+</div>
+</footer>
+</main>
+
+<script>
+// Sidebar toggle
+const sidebar = document.getElementById('sidebar');
+const main = document.getElementById('main');
+document.getElementById('toggleSidebar').addEventListener('click', () => {
+    sidebar.classList.toggle('-translate-x-72');
+    if (sidebar.classList.contains('-translate-x-72')) {
+        main.classList.remove('ml-72');
+        main.classList.add('ml-0');
+    } else {
+        main.classList.remove('ml-0');
+        main.classList.add('ml-72');
+    }
+});
+</script>
+</body>
+</html>

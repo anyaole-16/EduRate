@@ -1,0 +1,19 @@
+
+
+<header>
+  <div class="header-container">
+    <h1>EduRate System</h1>
+    <% if (role === 'student') { %>
+      <nav>
+        <a href="/student/dashboard">Dashboard</a>
+        <a href="/student/logout">Logout</a>
+      </nav>
+    <% } else if (role === 'admin') { %>
+      <nav>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/create-student">Create Student</a>
+        <a href="/admin/logout">Logout</a>
+      </nav>
+    <% } %>
+  </div>
+</header>

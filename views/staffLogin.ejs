@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduRate Portal Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#1e3b8a",
+                "accent-gold": "#facc15",
+                "background-light": "#f3f4f6",
+                "background-dark": "#121620",
+            },
+            fontFamily: { "display": ["Inter", "sans-serif"] },
+            borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" }
+        },
+    },
+}
+</script>
+<style>
+body { font-family: 'Inter', sans-serif; }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display">
+
+<!-- Navbar -->
+<header class="w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-primary dark:text-blue-400">
+      <span class="material-symbols-outlined text-3xl">school</span>
+      <span class="text-xl font-bold tracking-tight">EduRate</span>
+    </a>
+    <div class="flex items-center gap-6">
+      <a class="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Support</a>
+
+      <button class="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-lg text-sm font-semibold transition-all shadow-sm">Contact Admin</button>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow flex items-center justify-center p-6">
+  <div class="w-full max-w-md">
+
+    <!-- Login Card -->
+    <div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl overflow-hidden border border-slate-100 dark:border-slate-800">
+      <!-- Hero -->
+      <div class="h-32 bg-primary relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCzHzR5pBTdh1m57TQ8HSvdZDeOfr6nmfd5UfgbHoEnkI0MIpsM6g8esYKyo_BHWQX0IFGJicOilqZbOYBX-we8hs9McTcPWcCCv6WuZ32Kor6a3f50Wh1Tr2HvUJjotFo8xvQT7tJVrHiCnhtQzfORnkx35988rIMFf9JJJ_HolkVa3-w1pE69MP9jlqZmIlDkF_3-oCklwpfpqhNJWjgP1344BdA2aU_leYcvfM0zY0rRnGc5nRlLYRIZSYB9ZKler6OV4B4RnUcs"); background-size: cover; background-position: center;'></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent"></div>
+        <div class="absolute bottom-4 left-6">
+          <h1 class="text-white text-2xl font-bold">Portal Access</h1>
+          <p class="text-blue-100 text-xs">Course Evaluation System</p>
+        </div>
+      </div>
+
+      <div class="p-8">
+        <% if (error) { %>
+          <div class="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
+            <%= error %>
+          </div>
+        <% } %>
+
+        <!-- Role Toggle -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">I am logging in as:</label>
+          <div class="flex p-1 bg-slate-100 dark:bg-slate-800 rounded-lg">
+            <label class="flex-1 cursor-pointer">
+              <input class="sr-only peer" type="radio" name="role" value="lecturer" checked />
+              <div class="py-2 text-center text-sm font-medium rounded-md transition-all peer-checked:bg-white peer-checked:text-primary peer-checked:shadow-sm text-slate-500 dark:text-slate-400 dark:peer-checked:bg-slate-700 dark:peer-checked:text-white">Lecturer</div>
+            </label>
+            
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <form action="/login" method="POST" class="space-y-5">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5" for="id">University ID or Email</label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">person</span>
+              <input type="text" id="id" name="id" placeholder="e.g. 2023-10452" class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-slate-900 dark:text-slate-100" required />
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1.5">
+              <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300" for="password">Password</label>
+              <a class="text-xs font-medium text-primary dark:text-blue-400 hover:underline" href="#">Forgot?</a>
+            </div>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">lock</span>
+              <input type="password" id="password" name="password" placeholder="••••••••" class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-slate-900 dark:text-slate-100" required />
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 py-2">
+            <input class="w-4 h-4 rounded text-primary focus:ring-primary border-slate-300 dark:border-slate-700 dark:bg-slate-800" id="remember" type="checkbox"/>
+            <label class="text-sm text-slate-600 dark:text-slate-400" for="remember">Keep me logged in</label>
+          </div>
+
+          <button type="submit" class="w-full bg-primary hover:bg-primary/95 text-white font-bold py-3 rounded-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2 border-b-4 border-primary-dark border-accent-gold/40 active:border-b-0 active:translate-y-1">
+            <span>Log In</span>
+            <span class="material-symbols-outlined text-xl">login</span>
+          </button>
+           <!-- Signup Button -->
+  <a href="/signup" class="w-full block text-center mt-3 bg-white hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-primary dark:text-blue-400 font-semibold py-2 rounded-lg border border-slate-200 dark:border-slate-700 transition-all shadow-sm">
+    Sign Up
+  </a>
+        </form>
+      </div>
+
+      <!-- Footer Help -->
+      <div class="px-8 py-4 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 text-center">
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          Secure Academic Access • Authorized Users Only
+        </p>
+      </div>
+    </div>
+
+    <!-- Additional Links -->
+    <div class="mt-8 flex justify-center gap-6">
+      <div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-sm">
+        <span class="material-symbols-outlined text-lg">language</span>
+        <span>English (US)</span>
+      </div>
+      <div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-sm">
+        <span class="material-symbols-outlined text-lg">verified_user</span>
+        <span>Privacy Policy</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="py-6 text-center text-slate-500 dark:text-slate-500 text-xs">
+  <p>© 2026 EduRate. Managed by Skill Bloom Services.</p>
+</footer>
+
+</body>
+</html>

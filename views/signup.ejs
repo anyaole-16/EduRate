@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduRate - Student Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1e3b8a",
+              "background-light": "#f6f6f8",
+              "background-dark": "#121620",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-effect {
+            background: rgba(30, 59, 138, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex items-center justify-center p-0 md:p-6 lg:p-0">
+<div class="flex flex-col lg:flex-row w-full max-w-[1440px] min-h-screen lg:min-h-[850px] bg-white dark:bg-slate-900 shadow-2xl overflow-hidden lg:rounded-xl">
+<!-- Left Side: Hero / Brand Section -->
+<div class="relative hidden lg:flex lg:w-1/2 flex-col justify-between p-12 overflow-hidden bg-primary">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="Modern University Campus Library" class="w-full h-full object-cover opacity-40" data-alt="Modern university campus library architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkVCMPhHRYIOd6GacGqh0AiQsVPvGSPl4PUUaR1p6vXDX8szZLV1vtfZPYDuh6fgiHR0XEGsQY5jjrRzNU2vratkl2FQzp5q-khvI-KG0LFt_96fImrjoxrS-IjmVn0psqs2095GgQ95QNRhDBSUuG1_FMojjKZFr7VJoS37vk1I2TF7PwPZUucfxTWE-WmOQEm0ShoP36Br9RpucPLFk0st2Ujy-sLzczOX_jjZq9ZhYWyFKArHtfGygygREq6rXJlXyMjGleFK_D"/>
+<div class="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary/40"></div>
+</div>
+<!-- Content Over Image -->
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-white p-2 rounded-lg">
+<svg class="w-8 h-8 text-primary" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-2xl font-black tracking-tight text-white">EduRate</span>
+</div>
+<div class="max-w-md">
+<h1 class="text-5xl font-extrabold text-white leading-tight mb-6">
+                        Empowering academic excellence.
+                    </h1>
+<p class="text-xl text-blue-100/90 font-light leading-relaxed">
+                        Join a community dedicated to transparent feedback and continuous improvement in higher education. Your voice shapes the future of learning.
+                    </p>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4 text-white/80">
+<span class="material-symbols-outlined text-white">verified</span>
+<span class="text-sm font-medium">Official University Partner</span>
+</div>
+<div class="flex items-center gap-4 text-white/80">
+<span class="material-symbols-outlined text-white">security</span>
+<span class="text-sm font-medium">Secure &amp; Anonymous Evaluations</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+<div class="flex-1 flex flex-col justify-center items-center px-6 py-12 md:px-16 lg:px-24 bg-white dark:bg-slate-900 overflow-y-auto">
+<div class="w-full max-w-md">
+<!-- Mobile Logo -->
+<div class="lg:hidden flex justify-center mb-8">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-4xl">school</span>
+<span class="text-2xl font-black text-slate-900 dark:text-white">EduRate</span>
+</div>
+</div>
+<div class="mb-10 text-center lg:text-left">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Create Student Account</h2>
+<p class="text-slate-500 dark:text-slate-400">Please enter your academic details to register.</p>
+</div>
+<form method="POST" action="/signup" class="space-y-5">
+<input type="hidden" name="role" value="student" />
+
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">person</span>
+<input name="name" class="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-slate-900 dark:text-white" placeholder="e.g. John Doe" type="text" required/>
+</div>
+</div>
+<!-- Matriculation Number -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Matriculation Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">badge</span>
+<input name="matric" class="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-slate-900 dark:text-white" placeholder="e.g. 23/1234" type="text" required/>
+</div>
+</div>
+<!-- Faculty (Select) -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Faculty</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">account_balance</span>
+<select name="faculty" class="w-full pl-12 pr-10 py-3.5 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-slate-900 dark:text-white appearance-none" required>
+<option disabled selected value="">Select Faculty</option>
+<option value="eng">School of Computing</option>
+<option value="sci">School of Engineering</option>
+<option value="art">School of Nursing Sciences</option>
+<option value="med">School Of Medical Sciences</option>
+<option value="bus">School of Science and Technology</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Department (Select) -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">Department</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">book</span>
+<select name="department" class="w-full pl-12 pr-10 py-3.5 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-slate-900 dark:text-white appearance-none" required>
+<option disabled selected value="">Select Department</option>
+<option value="cs">Computer Science</option>
+<option value="ee">Electrical Engineering</option>
+<option value="me">Mechanical Engineering</option>
+<option value="ce">Civil Engineering</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- School Email -->
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300 ml-1">School Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-xl">mail</span>
+<input name="email" class="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none text-slate-900 dark:text-white" placeholder="student@university.edu" type="email" required/>
+</div>
+</div>
+<!-- Submit Button -->
+<div class="pt-4">
+<button class="w-full py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-lg shadow-lg shadow-primary/30 transition-all flex items-center justify-center gap-2 group" type="submit">
+<span>Sign Up</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</form>
+<div class="mt-10 pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
+<p class="text-slate-600 dark:text-slate-400">
+                        Already have an account? 
+                        <a class="text-primary font-bold hover:underline ml-1" href="/login">Login</a>
+</p>
+</div>
+<!-- Footer Terms -->
+<div class="mt-8 text-center">
+<p class="text-[10px] text-slate-400 uppercase tracking-widest font-medium">
+                        © 2024 EduRate University Evaluation System
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

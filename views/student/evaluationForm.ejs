@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Evaluation Form | EduRate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e3b8a",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121620",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .rating-btn:hover { background-color: rgba(30, 59, 138, 0.1); }
+        .rating-btn.active { background-color: #1e3b8a; color: white; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="w-8 h-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-xl font-bold tracking-tight text-primary">EduRate</span>
+</div>
+<nav class="hidden md:flex space-x-8">
+<a class="text-slate-600 hover:text-primary font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 hover:text-primary font-medium transition-colors border-b-2 border-primary" href="#">Courses</a>
+<a class="text-slate-600 hover:text-primary font-medium transition-colors" href="#">Evaluations</a>
+<a class="text-slate-600 hover:text-primary font-medium transition-colors" href="#">Reports</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+</button>
+<div class="h-10 w-10 rounded-full bg-slate-200 overflow-hidden border-2 border-primary/20">
+<img alt="Student Profile" class="h-full w-full object-cover" data-alt="Close up portrait of a male university student smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDSQRHa_f0L8OwVcaBx9gsOtFeNrjyqUiE1dBkthE52KvotdFxX14mV0pWEKrFhyB4MLimFSzv9ePli5yTVwdMsPoA_1yyiHAAs0snuQN5FfW8WBb0wylv_hhfqz0vnndAdCO2ZMR5OuFHu3hAwUr1uZezLIIqoNm2lKgFx9Ds43qAvNzS8RQ5WfzGmfn2dH_Xpmix4gpS6aamV8MXZbEvXv5vHfg_HvQrUwtyJr3ssyKsSQiNODATd6zzmkU_kp-jRfBrGPwbN6QU"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-4xl mx-auto px-4 py-8 pb-32">
+<!-- Breadcrumbs & Title -->
+<nav class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary" href="#">Evaluations</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 font-medium">CS101: Introduction to Programming</span>
+</nav>
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+<!-- Header Section -->
+<div class="p-8 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Course Evaluation Form</h1>
+<p class="text-slate-500 mt-1 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">school</span>
+                            CS101: Introduction to Programming — Dr. Jane Smith
+                        </p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-xs font-bold uppercase tracking-wider text-slate-400">Completion Status</span>
+<div class="w-48 h-2 bg-slate-200 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-1/5 transition-all duration-500"></div>
+</div>
+<span class="text-xs font-semibold text-primary">20% Completed (1 of 5 Sections)</span>
+</div>
+</div>
+</div>
+<!-- Form Body -->
+<div class="p-8 space-y-12">
+<!-- Section 1: Teaching Methodology -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<h2 class="text-xl font-bold text-primary tracking-tight">1. Teaching Methodology</h2>
+</div>
+<div class="space-y-8">
+<!-- Question Item -->
+<div class="group">
+<p class="text-slate-700 dark:text-slate-300 font-medium mb-4">How effective was the instructor in explaining complex concepts?</p>
+<div class="flex flex-wrap items-center gap-3">
+<span class="text-xs text-slate-400 font-medium w-16 uppercase">Poor</span>
+<div class="flex gap-2">
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all active">1</button>
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all">2</button>
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all">3</button>
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all">4</button>
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all">5</button>
+</div>
+<span class="text-xs text-slate-400 font-medium w-16 uppercase">Excellent</span>
+</div>
+</div>
+<div class="group">
+<p class="text-slate-700 dark:text-slate-300 font-medium mb-4">Did the instructor use a variety of teaching aids (slides, code demos, etc.)?</p>
+<div class="flex flex-wrap items-center gap-3">
+<span class="text-xs text-slate-400 font-medium w-16 uppercase">Never</span>
+<div class="flex gap-2">
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all">1</button>
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all">2</button>
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all">3</button>
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all">4</button>
+<button class="rating-btn w-12 h-12 rounded-lg border border-slate-200 flex items-center justify-center font-bold text-lg transition-all">5</button>
+</div>
+<span class="text-xs text-slate-400 font-medium w-16 uppercase">Always</span>
+</div>
+</div>
+</div>
+</section>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<!-- Section 2: Assessment Procedure -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+</div>
+<h2 class="text-xl font-bold text-primary tracking-tight">2. Teacher's Assessment Procedure</h2>
+</div>
+<div class="space-y-8">
+<div class="group">
+<p class="text-slate-700 dark:text-slate-300 font-medium mb-4">Were the tests and assignments fair and aligned with the course content?</p>
+<div class="flex gap-1">
+<button class="p-1 text-slate-300 hover:text-amber-400 transition-colors"><span class="material-symbols-outlined text-4xl">star</span></button>
+<button class="p-1 text-slate-300 hover:text-amber-400 transition-colors"><span class="material-symbols-outlined text-4xl">star</span></button>
+<button class="p-1 text-slate-300 hover:text-amber-400 transition-colors"><span class="material-symbols-outlined text-4xl">star</span></button>
+<button class="p-1 text-slate-300 hover:text-amber-400 transition-colors"><span class="material-symbols-outlined text-4xl">star</span></button>
+<button class="p-1 text-slate-300 hover:text-amber-400 transition-colors"><span class="material-symbols-outlined text-4xl">star</span></button>
+</div>
+</div>
+</div>
+</section>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<!-- Section 3: Classroom Management -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<h2 class="text-xl font-bold text-primary tracking-tight">3. Classroom Management</h2>
+</div>
+<div class="group">
+<p class="text-slate-700 dark:text-slate-300 font-medium mb-4">Did the instructor maintain a conducive learning environment?</p>
+<div class="flex flex-wrap gap-2">
+<button class="px-6 py-2 rounded-full border border-slate-200 text-slate-600 font-medium hover:border-primary hover:text-primary transition-all">Poor</button>
+<button class="px-6 py-2 rounded-full border border-slate-200 text-slate-600 font-medium hover:border-primary hover:text-primary transition-all">Fair</button>
+<button class="px-6 py-2 rounded-full border border-slate-200 text-slate-600 font-medium hover:border-primary hover:text-primary transition-all">Good</button>
+<button class="px-6 py-2 rounded-full border border-primary bg-primary/10 text-primary font-bold">Very Good</button>
+<button class="px-6 py-2 rounded-full border border-slate-200 text-slate-600 font-medium hover:border-primary hover:text-primary transition-all">Excellent</button>
+</div>
+</div>
+</section>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<!-- Section 4: Faith and Values -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">volunteer_activism</span>
+</div>
+<h2 class="text-xl font-bold text-primary tracking-tight">4. Integration of Faith and Values</h2>
+</div>
+<p class="text-slate-700 dark:text-slate-300 font-medium mb-4">How well did the instructor integrate ethical values or holistic perspectives into the subject matter?</p>
+<div class="flex gap-4">
+<button class="flex-1 py-3 rounded-lg border border-slate-200 flex flex-col items-center gap-1 hover:border-primary group transition-all">
+<span class="text-lg font-bold group-hover:text-primary">1</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Minimal</span>
+</button>
+<button class="flex-1 py-3 rounded-lg border border-slate-200 flex flex-col items-center gap-1 hover:border-primary group transition-all">
+<span class="text-lg font-bold group-hover:text-primary">2</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Subtle</span>
+</button>
+<button class="flex-1 py-3 rounded-lg border border-primary bg-primary/5 flex flex-col items-center gap-1 group transition-all">
+<span class="text-lg font-bold text-primary">3</span>
+<span class="text-[10px] text-primary/60 uppercase font-bold tracking-tighter">Balanced</span>
+</button>
+<button class="flex-1 py-3 rounded-lg border border-slate-200 flex flex-col items-center gap-1 hover:border-primary group transition-all">
+<span class="text-lg font-bold group-hover:text-primary">4</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Significant</span>
+</button>
+<button class="flex-1 py-3 rounded-lg border border-slate-200 flex flex-col items-center gap-1 hover:border-primary group transition-all">
+<span class="text-lg font-bold group-hover:text-primary">5</span>
+<span class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">Outstanding</span>
+</button>
+</div>
+</section>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<!-- Section 5: Attendance/Punctuality -->
+<section>
+<div class="flex items-center gap-3 mb-6">
+<div class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<h2 class="text-xl font-bold text-primary tracking-tight">5. Attendance &amp; Punctuality</h2>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-lg border border-dashed border-slate-300 dark:border-slate-700">
+<div class="flex justify-between items-center mb-6">
+<label class="text-slate-700 dark:text-slate-300 font-bold">Lecturer Punctuality</label>
+<span class="text-primary font-black text-xl">4 / 5</span>
+</div>
+<input class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary" max="5" min="1" type="range" value="4"/>
+<div class="flex justify-between mt-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+<span>Rarely on time</span>
+<span>Always punctual</span>
+</div>
+</div>
+</section>
+<hr class="border-slate-100 dark:border-slate-800"/>
+<!-- Qualitative Feedback -->
+<section class="space-y-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined">rate_review</span>
+</div>
+<h2 class="text-xl font-bold text-primary tracking-tight">Qualitative Feedback</h2>
+</div>
+<div class="space-y-4">
+<label class="block text-slate-700 dark:text-slate-300 font-bold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500">thumb_up</span>
+                            What I liked about this course
+                        </label>
+<textarea class="w-full rounded-lg border-slate-200 focus:border-primary focus:ring-primary dark:bg-slate-800 dark:border-slate-700" placeholder="Please share your positive experiences..." rows="4"></textarea>
+</div>
+<div class="space-y-4">
+<label class="block text-slate-700 dark:text-slate-300 font-bold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500">thumb_down</span>
+                            Areas for improvement / Dislikes
+                        </label>
+<textarea class="w-full rounded-lg border-slate-200 focus:border-primary focus:ring-primary dark:bg-slate-800 dark:border-slate-700" placeholder="Please share any challenges or suggestions for the instructor..." rows="4"></textarea>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Sticky Footer Actions -->
+<footer class="fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4 shadow-2xl">
+<div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4 text-slate-500 text-sm hidden md:flex">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">lock</span> Secure Session</span>
+<span class="w-px h-4 bg-slate-200"></span>
+<span>Autosaved at 14:23</span>
+</div>
+<div class="flex w-full sm:w-auto items-center gap-3">
+<button class="flex-1 sm:flex-none px-6 py-3 rounded-lg font-bold text-slate-600 hover:bg-slate-100 transition-colors border border-transparent">
+                    Save Draft
+                </button>
+<button class="flex-1 sm:flex-none px-10 py-3 bg-primary text-white rounded-lg font-bold shadow-lg shadow-primary/25 hover:bg-blue-800 transition-all flex items-center justify-center gap-2">
+                    Submit Evaluation
+                    <span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</footer>
+</body></html>

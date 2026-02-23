@@ -1,0 +1,42 @@
+<h1>Welcome, <%= lecturer.name %></h1>
+
+<% evaluationsData.forEach(data => { %>
+  <h2><%= data.course.title %> (<%= data.course.courseCode %>)</h2>
+  <p>Total Responses: <%= data.totalResponses %></p>
+
+  <!-- Chart.js canvas -->
+  <canvas id="chart-<%= data.course._id %>" width="400" height="200"></canvas>
+
+  <h4>Comments:</h4>
+  <ul>
+    <% data.comments.forEach(comment => { %>
+      <li><%= comment %></li>
+    <% }) %>
+  </ul>
+<% }) %>
+
+<a href="/lecturer/logout">Logout</a>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  <% evaluationsData.forEach(data => { %>
+    const ctx<%= data.course._id %> = document.getElementById('chart-<%= data.course._id %>').getContext('2d');
+    new Chart(ctx<%= data.course._id %>, {
+      type: 'bar',
+      data: {
+        labels: ['Clarity','Knowledge','Interaction','Punctuality'],
+        datasets: [{
+          label: 'Average Rating',
+          data: [
+            <%= data.avgRatings.clarity %>,
+            <%= data.avgRatings.knowledge %>,
+            <%= data.avgRatings.interaction %>,
+            <%= data.avgRatings.punctuality %>
+          ],
+          backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        }]
+      },
+      options: { scales: { y: { beginAtZero: true, max: 5 } } }
+    });
+  <% }) %>
+</script>

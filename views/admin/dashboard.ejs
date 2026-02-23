@@ -1,0 +1,23 @@
+<%- include('partials/header', { role: role }) %>
+<link rel="stylesheet" href="/css/style.css" />
+
+<h2>School Evaluation Dashboard</h2>
+<p>Welcome <%= admin.name %></p>
+
+<% courseData.forEach(c => { %>
+  <h3><%= c.course.name %> (Dept: <%= c.course.department %>, Level: <%= c.course.level %>)</h3>
+  <p>Average Ratings:</p>
+  <ul>
+    <li>Clarity: <%= c.avgRatings.clarity %></li>
+    <li>Knowledge: <%= c.avgRatings.knowledge %></li>
+    <li>Interaction: <%= c.avgRatings.interaction %></li>
+    <li>Punctuality: <%= c.avgRatings.punctuality %></li>
+  </ul>
+
+  <p>Comments:</p>
+  <ul>
+    <% c.evaluations.forEach(e => { %>
+      <li><%= e.student.matricNumber %>: <%= e.comment %></li>
+    <% }) %>
+  </ul>
+<% }) %>

@@ -1,0 +1,23 @@
+<%- include('partials/header', { role: role }) %>
+<link rel="stylesheet" href="/css/style.css" />
+
+
+
+<h2>Create Student</h2>
+
+<form action="/admin/create-student" method="POST">
+  <input type="email" name="email" placeholder="School Email" required />
+  <input type="text" name="matricNumber" placeholder="Matric Number" required />
+  <input type="text" name="department" placeholder="Department" required />
+  <select name="program" required>
+    <option value="undergraduate">Undergraduate</option>
+    <option value="postgraduate">Postgraduate</option>
+  </select>
+  <select name="level" required>
+    <option value="100">100</option>
+    <option value="200">200</option>
+    <option value="300">300</option>
+    <option value="400">400</option>
+  </select>
+  <button type="submit">Create Student</button>
+</form>
