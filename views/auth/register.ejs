@@ -1,0 +1,147 @@
+<%- include('../partials/header', { title: 'Register', extraCss: 'auth.css' }) %>
+
+<div class="auth-page">
+  <div class="auth-bg-grid"></div>
+  <div class="auth-bg-glow"></div>
+
+  <div class="auth-card" style="max-width:520px">
+    <a href="/" class="auth-logo">
+      <div class="auth-logo-header">
+        <div class="auth-logo-mark">📊</div>
+        <h1>Edu<span>Rate</span></h1>
+      </div>
+    </a>
+
+    <h2 class="auth-title">Student Registration</h2>
+    <p class="auth-subtitle">Create your account with your institutional details</p>
+
+    <% if (errorMsg != null) { %>
+      <div class="alert alert-danger" style="margin-bottom:1rem">⚠ <%= errorMsg %></div>
+    <% } %>
+
+    <% const f = formData != null ? formData : {}; %>
+
+    <form action="/auth/register" method="POST">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="fullName">Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            class="form-control"
+            placeholder="John Doe"
+            value="<%= f.fullName || '' %>"
+            required
+          >
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="matricNumber">Matric Number</label>
+          <input
+            type="text"
+            id="matricNumber"
+            name="matricNumber"
+            class="form-control"
+            placeholder="CSC/2021/001"
+            value="<%= f.matricNumber || '' %>"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">School Email Address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="you@student.university.edu"
+          value="<%= f.email || '' %>"
+          required
+        >
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="department">Department <span style="color:var(--danger)">*</span></label>
+          <select
+            id="department"
+            name="department"
+            class="form-control"
+            required
+          >
+            <option value="">Select your department</option>
+            <% if(departments && departments.length > 0) { %>
+              <% departments.forEach(dept => { %>
+                <option value="<%= dept %>" <%= f.department === dept ? 'selected' : '' %>><%= dept %></option>
+              <% }); %>
+            <% } %>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="school">School / Faculty <span style="color:var(--danger)">*</span></label>
+          <select
+            id="school"
+            name="school"
+            class="form-control"
+            required
+          >
+            <option value="">Select your school</option>
+            <% if(schools && schools.length > 0) { %>
+              <% schools.forEach(sch => { %>
+                <option value="<%= sch %>" <%= f.school === sch ? 'selected' : '' %>><%= sch %></option>
+              <% }); %>
+            <% } %>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="level">Level <span style="color:var(--danger)">*</span></label>
+        <select
+          id="level"
+          name="level"
+          class="form-control"
+          required
+        >
+          <option value="">Select your level</option>
+          <option value="100" <%= f.level == 100 ? 'selected' : '' %>>100 Level</option>
+          <option value="200" <%= f.level == 200 ? 'selected' : '' %>>200 Level</option>
+          <option value="300" <%= f.level == 300 ? 'selected' : '' %>>300 Level</option>
+          <option value="400" <%= f.level == 400 ? 'selected' : '' %>>400 Level</option>
+        </select>
+      </div>
+
+      <div id="course-selection" style="display:none;">
+        <p>Courses will be auto-assigned based on your department and level after registration.</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="password-field">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Min 6 characters" required minlength="6">
+            <button type="button" class="password-toggle">👁</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">Confirm Password</label>
+          <div class="password-field">
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Repeat password" required>
+            <button type="button" class="password-toggle">👁</button>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Create Account</button>
+    </form>
+
+    <div class="auth-footer-link">
+      Already registered? <a href="/auth/login">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer', { extraJs: ['auth.js'] }) %>

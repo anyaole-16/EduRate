@@ -1,0 +1,87 @@
+<%- include('../partials/header', { title: 'Sign In', extraCss: 'auth.css' }) %>
+
+<div class="auth-page">
+  <div class="auth-bg-grid"></div>
+  <div class="auth-bg-glow"></div>
+
+  <div class="auth-card">
+
+    <a href="/" class="auth-logo">
+      <div class="auth-logo-header">
+        <div class="auth-logo-mark">📊</div>
+        <h1>Edu<span>Rate</span></h1>
+      </div>
+      <p>Institutional Evaluation System</p>
+    </a>
+
+    <!-- Role selector — visual only, server determines role from DB -->
+    <div class="role-selector">
+      <button type="button" class="role-btn active" data-role="student">🎓 Student</button>
+      <button type="button" class="role-btn"        data-role="lecturer">👨‍🏫 Lecturer</button>
+    </div>
+
+    <h2 class="auth-title" id="login-title">Student Sign In</h2>
+    <p class="auth-subtitle" id="login-subtitle">Access your evaluation dashboard</p>
+
+    <% if (errorMsg != null) { %>
+      <div class="alert alert-danger" style="margin-bottom:1rem">⚠ <%= errorMsg %></div>
+    <% } %>
+
+    <form action="/auth/login" method="POST">
+
+      <div class="form-group">
+        <label class="form-label" for="email">Institutional Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="you@university.edu"
+          value="<%= formData != null ? formData.email || '' : '' %>"
+          required
+          autocomplete="email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <div class="password-field">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          >
+          <button type="button" class="password-toggle" aria-label="Toggle password">👁</button>
+        </div>
+      </div>
+
+      <div style="text-align:right; margin-bottom:1.25rem">
+        <a href="/auth/forgot-password">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Sign In</button>
+    </form>
+
+    <!-- Context-sensitive footer — changes with role selector -->
+    <div class="auth-footer-link" id="login-footer-student">
+      New student? <a href="/auth/register">Create an account</a>
+    </div>
+    <div class="auth-footer-link" id="login-footer-lecturer" style="display:none">
+      New lecturer? <a href="/auth/lecturer-register">Create an account</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="text-align:center; font-size:0.78rem; color:var(--text-dim)">
+      Are you an administrator?
+      <a href="/auth/admin-login" style="color:var(--warning); font-weight:600">Admin Portal →</a>
+    </div>
+
+  </div>
+</div>
+
+<%- include('../partials/footer', { extraJs: ['auth.js'] }) %>

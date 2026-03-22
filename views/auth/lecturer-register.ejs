@@ -1,0 +1,98 @@
+<%- include('../partials/header', { title: 'Lecturer Registration', extraCss: 'auth.css' }) %>
+
+<div class="auth-page">
+  <div class="auth-bg-grid"></div>
+  <div class="auth-bg-glow"></div>
+
+  <div class="auth-card" style="max-width:520px">
+
+    <div class="auth-logo">
+      <div class="auth-logo-mark">👨‍🏫</div>
+      <h1>Edu<span>Rate</span></h1>
+      <p>Lecturer Self-Registration</p>
+    </div>
+
+    <h2 class="auth-title">Create Lecturer Account</h2>
+    <p class="auth-subtitle">
+      Register with your institutional email. Your account will have access
+      to your evaluation reports once students begin submitting.
+    </p>
+
+    <% if (errorMsg != null) { %>
+      <div class="alert alert-danger" style="margin-bottom:1rem">⚠ <%= errorMsg %></div>
+    <% } %>
+
+    <% const f = formData != null ? formData : {}; %>
+
+    <form action="/auth/lecturer-register" method="POST">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="fullName">Full Name <span style="color:var(--danger)">*</span></label>
+          <input type="text" id="fullName" name="fullName" class="form-control"
+                 placeholder="Dr. Jane Doe" value="<%= f.fullName || '' %>" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="staffId">Staff ID</label>
+          <input type="text" id="staffId" name="staffId" class="form-control"
+                 placeholder="STF/2024/001" value="<%= f.staffId || '' %>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Institutional Email <span style="color:var(--danger)">*</span></label>
+        <input type="email" id="email" name="email" class="form-control"
+               placeholder="you@university.edu" value="<%= f.email || '' %>"
+               required autocomplete="email">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="department">Department</label>
+          <input type="text" id="department" name="department" class="form-control"
+                 placeholder="Computer Science" value="<%= f.department || '' %>">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="school">School / Faculty</label>
+          <input type="text" id="school" name="school" class="form-control"
+                 placeholder="Engineering" value="<%= f.school || '' %>">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="password">Password <span style="color:var(--danger)">*</span></label>
+          <div class="password-field">
+            <input type="password" id="password" name="password" class="form-control"
+                   placeholder="Min 6 characters" required minlength="6" autocomplete="new-password">
+            <button type="button" class="password-toggle">👁</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">Confirm Password <span style="color:var(--danger)">*</span></label>
+          <div class="password-field">
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+                   placeholder="Repeat password" required autocomplete="new-password">
+            <button type="button" class="password-toggle">👁</button>
+          </div>
+          <span id="confirm-match-hint" class="form-hint"></span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Create Lecturer Account</button>
+    </form>
+
+    <div class="auth-footer-link">
+      Already registered? <a href="/auth/login">Sign in</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="text-align:center; font-size:0.72rem; color:var(--text-dim)">
+      🔒 All data is encrypted and securely stored
+    </div>
+
+  </div>
+</div>
+
+<%- include('../partials/footer', { extraJs: ['auth.js'] }) %>

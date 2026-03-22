@@ -1,0 +1,87 @@
+<%- include('../partials/header', { title: 'Admin Portal', extraCss: 'auth.css' }) %>
+
+<div class="auth-page">
+  <div class="auth-bg-grid"></div>
+  <div class="auth-bg-glow"></div>
+
+  <div class="auth-card">
+
+    <a href="/" class="auth-logo">
+      <div class="auth-logo-header">
+        <div class="auth-logo-mark">⚙️</div>
+        <h1>Edu<span>Rate</span></h1>
+      </div>
+      <p>Administrator Portal</p>
+    </a>
+
+    <!-- Admin badge -->
+    <div style="
+      display:flex; align-items:center; justify-content:center; gap:0.5rem;
+      background:rgba(240,168,71,0.1); border:1px solid rgba(240,168,71,0.25);
+      border-radius:8px; padding:0.625rem 1rem;
+      margin-bottom:1.5rem;
+      font-size:0.8rem; font-weight:600; color:var(--warning);
+    ">
+      🔐 Restricted — Authorised Personnel Only
+    </div>
+
+    <h2 class="auth-title">Admin Sign In</h2>
+    <p class="auth-subtitle">Access the administration dashboard</p>
+
+    <% if (errorMsg != null) { %>
+      <div class="alert alert-danger" style="margin-bottom:1rem">⚠ <%= errorMsg %></div>
+    <% } %>
+
+    <form action="/auth/admin-login" method="POST">
+
+      <div class="form-group">
+        <label class="form-label" for="email">Admin Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="admin@university.edu"
+          value="<%= formData != null ? formData.email || '' : '' %>"
+          required
+          autocomplete="email"
+        >
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <div class="password-field">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="••••••••"
+            required
+            autocomplete="current-password"
+          >
+          <button type="button" class="password-toggle" aria-label="Toggle password">👁</button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg"
+              style="background:var(--warning); color:#000">
+        Sign In to Admin Portal
+      </button>
+
+    </form>
+
+    <div class="divider"></div>
+
+    <div style="text-align:center; font-size:0.78rem; color:var(--text-dim)">
+      <a href="/auth/login" style="color:var(--text-muted)">← Back to Student / Lecturer Login</a>
+    </div>
+
+    <div style="text-align:center; margin-top:0.75rem; font-size:0.72rem; color:var(--text-dim)">
+      🔒 All access attempts are logged
+    </div>
+
+  </div>
+</div>
+
+<%- include('../partials/footer', { extraJs: ['auth.js'] }) %>
