@@ -43,6 +43,16 @@ function setSession(req, user) {
   };
 }
 
+function saveSessionAndRedirect(req, res, destination) {
+  return req.session.save(err => {
+    if (err) {
+      console.error('[authController.saveSessionAndRedirect]', err);
+      return res.redirect('/auth/login');
+    }
+    return res.redirect(destination);
+  });
+}
+
 /* ════════════════════════════════════════════════════════════════
    LOGIN
 ════════════════════════════════════════════════════════════════ */
@@ -100,7 +110,7 @@ exports.login = async (req, res) => {
       ? decodeURIComponent(req.query.returnTo)
       : ROLE_DASHBOARD[user.role] || '/';
 
-    return res.redirect(returnTo);
+    return saveSessionAndRedirect(req, res, returnTo);
   } catch (err) {
     console.error('[authController.login]', err);
     req.session.flash_error = 'Something went wrong. Please try again.';
@@ -164,7 +174,7 @@ exports.adminLogin = async (req, res) => {
     await user.save({ validateBeforeSave: false });
 
     setSession(req, user);
-    return res.redirect('/admin/dashboard');
+    return saveSessionAndRedirect(req, res, '/admin/dashboard');
   } catch (err) {
     console.error('[authController.adminLogin]', err);
     req.session.flash_error = 'Something went wrong. Please try again.';
@@ -254,7 +264,7 @@ exports.register = async (req, res) => {
       return res.redirect('/auth/register');
     }
 
-    const enrolledCourses = courses ? (Array.isArray(courses) ? courses : [courses]).map(id => id.trim()) : [];
+    const enrolledCourses = [];
 
     const user = await User.create({
       fullName    : fullName.trim(),
@@ -291,7 +301,7 @@ exports.register = async (req, res) => {
     }
 
     setSession(req, user);
-    return res.redirect('/student/dashboard');
+    return saveSessionAndRedirect(req, res, '/student/dashboard');
   } catch (err) {
     console.error('[authController.register]', err);
     req.session.flash_error = err.code === 11000
@@ -363,7 +373,7 @@ exports.lecturerRegister = async (req, res) => {
     });
 
     setSession(req, user);
-    return res.redirect('/lecturer/dashboard');
+    return saveSessionAndRedirect(req, res, '/lecturer/dashboard');
   } catch (err) {
     console.error('[authController.lecturerRegister]', err);
     req.session.flash_error = err.code === 11000
@@ -526,7 +536,7 @@ exports.resetPassword = async (req, res) => {
 exports.logout = (req, res) => {
   req.session.destroy(err => {
     if (err) console.error('[authController.logout]', err);
-    res.clearCookie('connect.sid');
+    res.clearCookie('edurate.sid');
     return res.redirect('/auth/login');
   });
 };
