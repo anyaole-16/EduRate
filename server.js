@@ -28,16 +28,29 @@ const methodOverride = require('method-override');
 
 const app = express();
 
+// Render/other PaaS terminate TLS at the proxy; trust X-Forwarded-* headers
+// so secure session cookies can be set correctly.
+app.set('trust proxy', 1);
+
 /* ═══════════════════════════════════════════════════════════════
    1. DATABASE CONNECTION
 ═══════════════════════════════════════════════════════════════ */
 
-const MONGO_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/edurate';
+const MONGO_URI = process.env.MONGODB_URI;
+if (!MONGO_URI) {
+  console.error('❌  MONGODB_URI environment variable is not set. Provide a MongoDB Atlas connection string.');
+  process.exit(1);
+}
+
+if (process.env.NODE_ENV === 'production' && !process.env.SESSION_SECRET) {
+  console.error('❌  SESSION_SECRET environment variable is required in production.');
+  process.exit(1);
+}
 
 mongoose.connect(MONGO_URI, {
   // Connection pooling — handles burst load from concurrent students
   maxPoolSize        : 50,
-  serverSelectionTimeoutMS: 5000,
+  serverSelectionTimeoutMS: 10000, // Increased for Atlas network latency
   socketTimeoutMS    : 45000,
 })
   .then(() => console.log(`✅  MongoDB connected: ${mongoose.connection.host}`))
